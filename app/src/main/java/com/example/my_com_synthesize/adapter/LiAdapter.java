@@ -59,7 +59,7 @@ public class LiAdapter extends DelegateAdapter.Adapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 7;
     }
 
     private class VieqHoders extends RecyclerView.ViewHolder {

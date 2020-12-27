@@ -14,6 +14,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.OnePlusNLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
+import com.example.my_com_synthesize.adapter.CanAdapter;
 import com.example.my_com_synthesize.adapter.FrAdapters;
 import com.example.my_com_synthesize.adapter.GridAdaopter;
 import com.example.my_com_synthesize.adapter.LiAdapter;
@@ -138,6 +139,14 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
 
         LiAdapter liAdapter = new LiAdapter(getActivity(), categoryList, gridLayoutHelper2);
 
+        //第九個佈局
+        LinearLayoutHelper linearLayoutHelper1 = new LinearLayoutHelper();
+        linearLayoutHelper1.setItemCount(1);
+        CanAdapter canAdapter = new CanAdapter(getActivity(), linearLayoutHelper1);
+
+        
+
+
         DelegateAdapter delegateAdapter = new DelegateAdapter(virtualLayoutManager, true);
         delegateAdapter.addAdapter(mainAdapter);
         delegateAdapter.addAdapter(mainGridAdapter);
@@ -147,6 +156,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         delegateAdapter.addAdapter(lisAdapter);
         delegateAdapter.addAdapter(frAdapters);
         delegateAdapter.addAdapter(liAdapter);
+        delegateAdapter.addAdapter(canAdapter);
 
         recy.setLayoutManager(virtualLayoutManager);
         recy.setAdapter(delegateAdapter);
