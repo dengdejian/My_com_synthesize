@@ -14,12 +14,14 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.OnePlusNLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
+import com.example.my_com_synthesize.adapter.FrAdapters;
 import com.example.my_com_synthesize.adapter.GridAdaopter;
 import com.example.my_com_synthesize.adapter.LisAdapter;
 import com.example.my_com_synthesize.adapter.PlusAdapter;
 import com.example.my_com_synthesize.R;
 import com.example.my_com_synthesize.adapter.MainAdapter;
 import com.example.my_com_synthesize.adapter.MainGridAdapter;
+import com.example.my_com_synthesize.adapter.VpAdapter;
 import com.example.my_com_synthesize.bean.AnewsListBean;
 import com.example.my_com_synthesize.bean.AstudentBean;
 import com.example.my_com_synthesize.adapter.LineAdapter;
@@ -38,6 +40,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
     private List<PersonBanner.DataBean.BrandListBean> brandList;
     private List<PersonBanner.DataBean.NewGoodsListBean> newGoodsList;
     private List<PersonBanner.DataBean.HotGoodsListBean> hotGoodsList;
+    private List<PersonBanner.DataBean.TopicListBean> topicList;
 
     @Override
     public void getBannerReturn(PersonBanner bannerBean) {
@@ -47,6 +50,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         brandList = bannerBean.getData().getBrandList();
         newGoodsList = bannerBean.getData().getNewGoodsList();
         hotGoodsList = bannerBean.getData().getHotGoodsList();
+        topicList = bannerBean.getData().getTopicList();
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getActivity());
         RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
@@ -121,7 +125,9 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
 
         //第七个布局
         OnePlusNLayoutHelper onePlusNLayoutHelper1 = new OnePlusNLayoutHelper();
-        onePlusNLayoutHelper1.setItemCount(1);
+        int size = topicList.size();
+        onePlusNLayoutHelper1.setItemCount(size);
+        FrAdapters frAdapters = new FrAdapters(getActivity(), topicList, onePlusNLayoutHelper1);
 
 
 
@@ -132,7 +138,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         delegateAdapter.addAdapter(lineAdapter);
         delegateAdapter.addAdapter(gridAdaopter);
         delegateAdapter.addAdapter(lisAdapter);
-
+        delegateAdapter.addAdapter(frAdapters);
 
         recy.setLayoutManager(virtualLayoutManager);
         recy.setAdapter(delegateAdapter);

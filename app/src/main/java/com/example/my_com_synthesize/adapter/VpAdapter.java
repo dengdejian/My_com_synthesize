@@ -39,9 +39,11 @@ public class VpAdapter extends PagerAdapter {
         ImageView imageView = new ImageView(context);
         PersonBanner.DataBean.TopicListBean topicListBean = list.get(position);
         // item_pic_url
+        //https://github.com/dengdejian?tab=repositorieshttps://yanxuan.nosdn.127.net/14943267735961674.jpg
+        String img = "https://github.com/dengdejian?tab=repositorieshttps://yanxuan.nosdn.127.net/14943267735961674.jpg";
         String item_pic_url = topicListBean.getItem_pic_url();
-        Glide.with(context).load(item_pic_url).into(imageView);
-        return super.instantiateItem(container, position);
+        Glide.with(context).load(img).into(imageView);
+        return imageView;
     }
 
     @Override
