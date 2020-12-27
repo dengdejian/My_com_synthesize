@@ -16,6 +16,7 @@ import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StaggeredGridLayoutHelper;
 import com.example.my_com_synthesize.adapter.FrAdapters;
 import com.example.my_com_synthesize.adapter.GridAdaopter;
+import com.example.my_com_synthesize.adapter.LiAdapter;
 import com.example.my_com_synthesize.adapter.LisAdapter;
 import com.example.my_com_synthesize.adapter.PlusAdapter;
 import com.example.my_com_synthesize.R;
@@ -41,6 +42,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
     private List<PersonBanner.DataBean.NewGoodsListBean> newGoodsList;
     private List<PersonBanner.DataBean.HotGoodsListBean> hotGoodsList;
     private List<PersonBanner.DataBean.TopicListBean> topicList;
+    private List<PersonBanner.DataBean.CategoryListBean> categoryList;
 
     @Override
     public void getBannerReturn(PersonBanner bannerBean) {
@@ -51,6 +53,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         newGoodsList = bannerBean.getData().getNewGoodsList();
         hotGoodsList = bannerBean.getData().getHotGoodsList();
         topicList = bannerBean.getData().getTopicList();
+        categoryList = bannerBean.getData().getCategoryList();
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getActivity());
         RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
@@ -129,7 +132,11 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         onePlusNLayoutHelper1.setItemCount(size);
         FrAdapters frAdapters = new FrAdapters(getActivity(), topicList, onePlusNLayoutHelper1);
 
+        //第八个布局
+        GridLayoutHelper gridLayoutHelper2 = new GridLayoutHelper(2, 2);
+        gridLayoutHelper2.setItemCount(2);
 
+        LiAdapter liAdapter = new LiAdapter(getActivity(), categoryList, gridLayoutHelper2);
 
         DelegateAdapter delegateAdapter = new DelegateAdapter(virtualLayoutManager, true);
         delegateAdapter.addAdapter(mainAdapter);
@@ -139,6 +146,7 @@ public class RecyFragment extends BlankFragment<HomePresenter> implements IHome.
         delegateAdapter.addAdapter(gridAdaopter);
         delegateAdapter.addAdapter(lisAdapter);
         delegateAdapter.addAdapter(frAdapters);
+        delegateAdapter.addAdapter(liAdapter);
 
         recy.setLayoutManager(virtualLayoutManager);
         recy.setAdapter(delegateAdapter);
