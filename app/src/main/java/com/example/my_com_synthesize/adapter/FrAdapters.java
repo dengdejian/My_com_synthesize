@@ -50,6 +50,24 @@ public class FrAdapters extends DelegateAdapter.Adapter {
 
         VpAdapter vpAdapter = new VpAdapter(context, list);
         viewHolderw.pager.setAdapter(vpAdapter);
+
+        viewHolderw.pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewHolderw.title.setText(topicListBean.getTitle());
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         viewHolderw.title.setText(topicListBean.getTitle());
 
     }

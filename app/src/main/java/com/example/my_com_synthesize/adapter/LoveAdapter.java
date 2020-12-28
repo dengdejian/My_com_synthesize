@@ -50,17 +50,18 @@ public class LoveAdapter extends DelegateAdapter.Adapter {
         List<PersonBanner.DataBean.CategoryListBean.GoodsListBean> goodsList = categoryListBean.getGoodsList();
         for (PersonBanner.DataBean.CategoryListBean.GoodsListBean personBanner : goodsList) {
             PersonBanner.DataBean.CategoryListBean.GoodsListBean goodsListBean = goodsList.get(position);
-            String name1 = goodsListBean.getName();
-            String list_pic_url1 = goodsListBean.getList_pic_url();
 
-            ViewHolder1s viewHolder1s = (ViewHolder1s) holder;
-            RequestOptions requestOptions = new RequestOptions().circleCrop();
-            Glide.with(context).load(list_pic_url1).apply(requestOptions).into(viewHolder1s.guo);
-            viewHolder1s.name.setText(name1);
+            int id = personBanner.getId();
+            if (id == 1005001) {
+                String name1 = goodsListBean.getName();
+                String list_pic_url1 = goodsListBean.getList_pic_url();
 
+                ViewHolder1s viewHolder1s = (ViewHolder1s) holder;
+                RequestOptions requestOptions = new RequestOptions().circleCrop();
+                Glide.with(context).load(list_pic_url1).apply(requestOptions).into(viewHolder1s.guo);
+                viewHolder1s.name.setText(name1);
+            }
         }
-
-
     }
 
     @Override
